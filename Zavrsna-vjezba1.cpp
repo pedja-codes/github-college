@@ -26,6 +26,8 @@ vrijednost ulazne vrijednosti. Povratnu vrijednost ispišite na ekran.*/
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime>
 
 //using namespace std;
 
@@ -36,16 +38,23 @@ struct ucenici{
 }polje[50];
 
 int apsolutna(int a){
+    int aps;
 
-    int aps=a*-1;
+    if(a<0)
+    aps=a*-1;
+    else
+    aps=a;
 
     return aps;
 }
 
 int main(){
 
+srand(time(0));
+
 int izbor,brojac;
 
+do{
 std::cout<<"IZBORNIK Odabir (1-4 ili 9):"<<std::endl;
 std::cout<<"1. Unos elementa u polje"<<std::endl;
 std::cout<<"2. Ispis svih elemenata iz polja"<<std::endl;
@@ -92,10 +101,6 @@ switch(izbor){
 
     case 2:{
 
-   /* 2. zadatak – kreirajte potprogram koji radi sljedeće:
-Implementirajte mogućnost ispisa svih upisanih elemenata u polje struktura. Nakon ispisa svih elemenata
-ispišite i zbroj ocjena svih elemenata u polju.*/
-
     int m,suma=0;
 
     std::cout<<"Maximalni ispis je 50,koliko stavki zelite ispisati? "<<std::endl;
@@ -120,18 +125,46 @@ ispišite i zbroj ocjena svih elemenata u polju.*/
 
     break;//case 2
    
-}
+}//case 2
+    
+    case 3:{
+
+        int *polje2=new int[10];
+
+        for(int i=0;i<10;i++)
+        polje2[i]=rand()%41+30;
 
 
+        std::cout<<"Ispis generiranih brojeva u polju u razmaku od 30 do 70: "<<std::endl;
+        for(int i=0;i<10;i++)
+        std::cout<<polje2[i]<<" ";
+        std::cout<<std::endl;
 
+        delete[] polje2;
 
+        break;
 
+    }//case 3
 
+    case 4:{
 
+          int apov;
 
+          std::cout<<"Unesite cijeli broj: \n";
+          std::cin>>apov;
 
+          std::cout<<"Apsolutna vrijednost unesenog broja je: "<<apsolutna(apov)<<std::endl;
+          std::cout<<std::endl;
+
+          break;
+
+    }
+
+    default:
+           if(izbor!=9)
+           std::cout<<"Pogrešan unos!"<<std::endl;
 
 }//switch
-
+}while(izbor!=9);
     return 0;
 }//main
