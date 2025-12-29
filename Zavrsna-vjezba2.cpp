@@ -35,11 +35,23 @@ struct prvkt {
 
 }polje[50];
 
+int povrat (int a,int b){
+
+    int c=0;
+
+    if(a>b)
+    c=a;
+    else 
+    c=b;
+
+    return c;
+}
+
 int main(){
 
     int izbor,unos,unos2,brojac=0;
 
-
+do{
 std::cout<<"IZBORNIK Odabir (1-4 ili 9): "<<std::endl;
 std::cout<<"1. Unos elementa u polje"<<std::endl;
 std::cout<<"2. Ispis svih elemenata iz polja"<<std::endl;
@@ -66,7 +78,7 @@ for(int i=0;i<unos;i++){
     polje[i].O=2*(polje[i].a+polje[i].b);
     brojac++;
 }//for
-
+break;
 case 2:
 
 std::cout<<"Koliko elemenata zelite ispisat? \n";
@@ -79,10 +91,7 @@ std::cout<<"Opseg je: "<<polje[i].O<<". "<<std::endl;
 }
 
 std::cout<<"Ukupan broj unesenih elemenata u polju: "<<brojac<<". "<<std::endl;
-/* Dinamički alocirajte cjelobrojnu varijablu. Omogućite korisniku unos cjelobrojne vrijednosti i tražite
-unos troznamenkastog broja. Ako korisnik ne unese troznamenkasti broj, tražite ponovni upis broja sve
-dok upisani broj ne bude u zadanom rasponu. Ispišite zbroj znamenki upisanog troznamenkastog broja.
-Dealocirajte kreiranu dinamičku varijablu. */
+break;
 case 3:{
 
     int *var=new int;
@@ -91,26 +100,43 @@ case 3:{
     do{
     std::cin>>*var;
 
-    if(*var<100 || *var>>999)
+    if(*var<100 || *var>999)
     std::cout<<"Pogresan unos!"<<std::endl;
 
 
-    }while(*var<100 || *var>>999);
+    }while(*var<100 || *var>999);
 
-    int aj=(*a%100);
+   
+    int varj=(*var%10);
+    //std::cout<<varj<<std::endl;
+    int vard=(*var/10)%10;
+    //std::cout<<vard<<std::endl;
+    int vars=*var/100;
+    //std::cout<<vars<<std::endl;
 
+    std::cout<<"Zbroj znamenki unesenog broja: "<<varj+vard+vars<<". "<<std::endl;
 
-
-
+    delete var;
+break;
 }//case3
 
+case 4:{
 
+    int var4a,var4b;
 
+    std::cout<<"Unesite dvije cijelobrijne vrijednosti: \n";
+    std::cin>>var4a>>var4b;
 
+    std::cout<<"Veci broj je: "<<povrat(var4a,var4b)<<". "<<std::endl;
+break;
+}
 
-
+default:
+if(izbor!=9)
+std::cout<<"Pogrešan odabir!"<<std::endl;
 
 }// switch
+}while(izbor!=9);
 
     return 0;
 }
